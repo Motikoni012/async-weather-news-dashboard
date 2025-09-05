@@ -5,7 +5,10 @@
   "scripts": {
   "build": "tsc",
   "start": "node dist/index.js",
-  "dev": "nodemon --exec ts-node src/index.ts"
+   "dev": "ts-node src/index.ts",
+  "callback": "ts-node src/callbacks/callbackVersion.ts",
+  "promise": "ts-node src/promises/promiseVersion.ts",
+  "async": "ts-node src/asyncAwait/asyncAwaitVersion.ts"
 },
   "keywords": [],
   "author": "",
