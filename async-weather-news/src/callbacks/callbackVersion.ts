@@ -1,5 +1,6 @@
 import https from "https";
 import { IncomingMessage } from "http";
+import { handleError } from "../utils/errorHandler";
 
 function fetchData(url: string, callback: (err: Error | null, data?: any) => void) {
     https.get(url, (res: IncomingMessage) => {
@@ -28,20 +29,20 @@ export function runCallbacks() {
 
     fetchData(weatherUrl, (err, weatherData) => {
         if(err) {
-            return console.error("Weather fetch error:", err.message)
+            return handleError("Callback Weather:", err)
         }
 
         console.log("Weather:", weatherData.current_weather)
 
         fetchData(newsUrl, (err, newsData) => {
             if(err) {
-                return console.error("News fetch error:", err.message)
+                return handleError("Callback News:", err)
             }
             console.log("News:", newsData.posts.slice(0,5))
 
             fetchData(newsUrl, (err, secondNews) => {
                 if(err) {
-                    return console.error("Second news fetch error:", err.message)
+                    return handleError("Callback Second news:", err)
                 }
                 console.log("Another News Call:", secondNews.posts[0])
             })

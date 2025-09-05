@@ -2,6 +2,7 @@ import https from "https";
 import { IncomingMessage } from "http";
 import { resolve } from "path";
 import { rejects } from "assert";
+import { handleError } from "../utils/errorHandler";
 
 function fetchData(url: string): Promise<any> {
     return new Promise((resolve, rejects) => {
@@ -36,21 +37,19 @@ export function runPromises() {
     }).then((news) => {
         console.log("News :", news.posts.slice(0,5))
     }).catch((err) => {
-        console.error("Promise Chain Error:", err)
+        handleError("Promise Chain:", err)
     })
 
     Promise.all([fetchData(weatherUrl), fetchData(newsUrl)]).then(([weather, news]) => {
         console.log("Weather :", weather.current_weather)
         console.log("News :", news.posts.slice(0,3))
-    }).catch((err) => console.error("Promise.all Error:", err))
+    }).catch((err) => handleError("Promise.all:", err))
 
     Promise.race([fetchData(weatherUrl), fetchData(newsUrl)]).then((fastest) => {
         console.log("\nPromise.race result:", fastest)
-    }).catch((err) =>
-        console.error("Promise.race Error:", err) 
-    )
+    }).catch((err) => handleError("Promise.race:", err) )
 
     Promise.race([fetchData(weatherUrl), fetchData(newsUrl)]).then((fastest) => {
         console.log("Promise.race result:", fastest)
-    }).catch((err) => console.error("Promise.race Error:", err))
+    }).catch((err) => handleError("Promise.race:", err))
 }
