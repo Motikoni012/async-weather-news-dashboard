@@ -58,7 +58,7 @@ export async function runAsyncAwait() {
             fetchData(weatherUrl),
             fetchData(newsUrl)
         ])
-        console.log("\nPromise.race (Aync?Await):", fastest)
+        console.log("\nPromise.race (Aync/Await):", fastest)
     } catch (err) {
         handleError("Promise.race:", err)
     }
