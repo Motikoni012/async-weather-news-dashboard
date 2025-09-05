@@ -3,6 +3,7 @@ import { IncomingMessage } from "http";
 import { resolve } from "path";
 import { rejects } from "assert";
 import { console } from "inspector";
+import { handleError } from "../utils/errorHandler";
 
 function fetchData(url: string): Promise<any> {
     return new Promise((resolve, rejects) => {
@@ -38,7 +39,7 @@ export async function runAsyncAwait() {
         const news = await fetchData(newsUrl)
         console.log("News :", news.posts.slice(0,5))
     } catch (err) {
-        console.error("Asnc/Await Error:", err)
+        handleError("Asnc/Await Sequential:", err)
     }
 
     try {
@@ -49,7 +50,7 @@ export async function runAsyncAwait() {
         console.log("Weather :", weather.current_weather)
         console.log("News :", news.posts.slice(0,3))
     } catch (err) {
-        console.error("Pormise.all Error:", err)
+        handleError("Pormise.all:", err)
     }
 
     try {
@@ -59,6 +60,6 @@ export async function runAsyncAwait() {
         ])
         console.log("\nPromise.race (Aync?Await):", fastest)
     } catch (err) {
-        console.error("Promise.race Error:", err)
+        handleError("Promise.race:", err)
     }
 }
