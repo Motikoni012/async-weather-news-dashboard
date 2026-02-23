@@ -3,19 +3,19 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-  "build": "tsc",
-  "start": "node dist/index.js",
-   "dev": "ts-node src/index.ts",
-  "callback": "ts-node src/callbacks/callbackVersion.ts",
-  "promise": "ts-node src/promises/promiseVersion.ts",
-  "async": "ts-node src/asyncAwait/asyncAwaitVersion.ts"
-},
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "dev": "ts-node src/index.ts",
+    "callback": "ts-node src/callbacks/callbackVersion.ts",
+    "promise": "ts-node src/promises/promiseVersion.ts",
+    "async": "ts-node src/asyncAwait/asyncAwaitVersion.ts"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "description": "",
   "devDependencies": {
-    "@types/node": "^24.3.0",
+    "@types/node": "^24.10.13",
     "nodemon": "^3.1.10",
     "ts-node": "^10.9.2",
     "typescript": "^5.9.2"
